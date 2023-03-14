@@ -4,11 +4,12 @@ Organization of verification of several microservices, for example, for a load b
 
 ## Requirements
 
-Installed Docker.
+* OS Linux
+* Installed Docker or Podman (selected in `project.properties`)
 
 ## Test
 
-Run the file `start.sh ` and you will see the following output text
+Run the file `start.sh` and you will see the following output text
 
 ```bash
 ...
