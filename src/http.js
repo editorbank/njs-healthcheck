@@ -17,6 +17,6 @@ async function healthcheck(r) {
     r.return(common_status, JSON.stringify({
         status:common_status,
         substatuses:sub_statuses
-    },null,2));
+    },null,2)+"\n");
 }
 export default {healthcheck};
