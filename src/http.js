@@ -6,11 +6,17 @@ async function healthcheck(r) {
     }
     let check_array = r.variables['healthcheck_list'].split(",");
     let results = await Promise.all(check_array.map(uri => r.subrequest(uri)));
-    let sub_statuses = results.map(reply => ({
-        uri:  reply.uri,
-        status: reply.status,
-        test_body: (/\{\s*\"status\"\s*:\s*\"up\"\s*\}/i).test(reply.responseBody),
-    }));
+    let sub_statuses = results.map(function(reply){
+        let test_body = false;
+        try{
+            test_body = (JSON.parse(reply.responseBody)||{}).status == 'UP';
+        }catch(e){}
+        return {
+            uri:  reply.uri,
+            status: reply.status,
+            test_body: test_body,
+        }
+    });
     var common_status = sub_statuses.reduce(
         (previus, i) => previus && (200 <= i.status && i.status < 400)
         , true
