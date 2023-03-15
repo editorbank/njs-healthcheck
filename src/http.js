@@ -18,7 +18,7 @@ async function healthcheck(r) {
         }
     });
     var common_status = sub_statuses.reduce(
-        (previus, i) => previus && (200 <= i.status && i.status < 400)
+        (previus, i) => previus && (i.test_body || (200 <= i.status && i.status < 400))
         , true
     ) ? 200 : 503;
     r.return(common_status, JSON.stringify({
