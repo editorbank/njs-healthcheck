@@ -13,12 +13,12 @@ Run the file `start.sh` (or `start.cmd` for Windows) and you will see the follow
 
 ```bash
 ...
-++ curl -D- localhost:37067
+++ curl -D- localhost:42019
 HTTP/1.1 200 OK
 Server: nginx/1.23.3
-Date: Tue, 14 Mar 2023 19:31:47 GMT
+Date: Wed, 15 Mar 2023 21:41:40 GMT
 Content-Type: text/plain; charset=utf-8
-Content-Length: 202
+Content-Length: 279
 Connection: keep-alive
 
 {
@@ -26,17 +26,21 @@ Connection: keep-alive
   "substatuses": [
     {
       "uri": "/s1",
-      "status": 200
+      "status": 200,
+      "test_body": false
     },
     {
       "uri": "/s2",
-      "status": 202
+      "status": 202,
+      "test_body": true
     },
     {
       "uri": "/s3",
-      "status": 200
+      "status": 200,
+      "test_body": false
     }
   ]
 }
 ```
+
 Run the file `clean.sh` (or `clean.cmd`) for free disk space
